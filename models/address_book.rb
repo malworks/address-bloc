@@ -59,6 +59,10 @@ class AddressBook
     return nil
   end
 
+  def detonate
+    @entries = []
+  end
+
   def iterative_search(name)
     @entries.each do |entry|
       if entry.name == name
