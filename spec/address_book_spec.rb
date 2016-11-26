@@ -42,13 +42,38 @@ RSpec.describe AddressBook do
       check_entry(entry_five, "Sussie", "555-555-2036", "sussie@blocmail.com")
     end
 
-
     it "initializes entries as an array" do
       expect(book.entries).to be_an(Array)
     end
 
     it "initializes entries as empty" do
       expect(book.entries.size).to eq (0)
+    end
+  end
+
+  context "imports from entries_2" do
+    it "imports the correct number of entries" do
+      book.import_from_csv("entries_2.csv")
+
+      expect(book.entries.size).to eq 3
+    end
+
+    it "imports the 1st entry" do
+      book.import_from_csv("entries_2.csv")
+      entry_one = book.entries[2]
+      check_entry(entry_one, "Mal", "333-333-0625", "mal@blocmail.com")
+    end
+
+    it "imports the 2nd entry" do
+      book.import_from_csv("entries_2.csv")
+      entry_two = book.entries[0]
+      check_entry(entry_two, "Doug", "333-333-1106", "doug@blocmail.com")
+    end
+
+    it "imports the 3rd entry" do
+      book.import_from_csv("entries_2.csv")
+      entry_three = book.entries[1]
+      check_entry(entry_three, "Levi", "333-333-0604", "levi@blocmail.com")
     end
   end
 
